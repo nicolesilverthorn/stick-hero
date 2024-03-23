@@ -156,7 +156,7 @@ window.addEventListener("keydown", function (event) {
   }
 });
 
-window.addEventListener("mousedown", function (event) {
+window.addEventListener("mousedown" "touchstart", function (event) {
   if (phase == "waiting") {
     lastTimestamp = undefined;
     introductionElement.style.opacity = 0;
@@ -165,7 +165,7 @@ window.addEventListener("mousedown", function (event) {
   }
 });
 
-window.addEventListener("mouseup", function (event) {
+window.addEventListener("mouseup" "touchend", function (event) {
   if (phase == "stretching") {
     phase = "turning";
   }
