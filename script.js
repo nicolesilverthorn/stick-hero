@@ -20,8 +20,6 @@ let platforms = [];
 let sticks = [];
 let trees = [];
 
-// Todo: Save high score to localStorage(?)
-
 let score = 0;
 
 // Configuration
@@ -61,9 +59,19 @@ const introductionElement = document.getElementById("introduction");
 const perfectElement = document.getElementById("perfect");
 const restartButton = document.getElementById("restart");
 const scoreElement = document.getElementById("score");
+const hiScoreElement = document.getElementById("hiScore");
 
 // Initialize layout
 resetGame();
+
+var hiScore = `${localStorage.getItem("hiScore")}`;
+if (!localStorage.getItem("hiScore")) {
+	localStorage.setItem("hiScore", score);
+	hiScore = 0;
+} 
+else {
+	hiScore = parseInt(localStorage.getItem("hiScore"));
+}
 
 // Resets game variables and layouts but does not start the game (game starts on keypress) Oh yeahh
 function resetGame() {
@@ -72,11 +80,17 @@ function resetGame() {
   lastTimestamp = undefined;
   sceneOffset = 0;
   score = 0;
+  
+    if (score > hiScore) {
+		hiScore = score;
+		localStorage.setItem("hiScore", score);
+	}
 
   introductionElement.style.opacity = 1;
   perfectElement.style.opacity = 0;
   restartButton.style.display = "none";
-  scoreElement.innerText = score;
+  scoreElement.innerText = ("Score: " + score);
+  hiScoreElement.innerText = ("High Score: " + hiScore);
 
   // The first platform is always the same
   // x + w has to match paddingX
@@ -192,6 +206,10 @@ window.addEventListener("resize", function (event) {
 
 window.requestAnimationFrame(animate);
 
+
+
+
+
 // The main game loop
 function animate(timestamp) {
   if (!lastTimestamp) {
@@ -199,6 +217,8 @@ function animate(timestamp) {
     window.requestAnimationFrame(animate);
     return;
   }
+  
+    
 
   switch (phase) {
     case "waiting":
@@ -217,7 +237,8 @@ function animate(timestamp) {
         if (nextPlatform) {
           // Increase score
           score += perfectHit ? 2 : 1;
-          scoreElement.innerText = score;
+          scoreElement.innerText = ("Score: " + score);
+          hiScoreElement.innerText = ("High Score: " + hiScore);
 
           if (perfectHit) {
             perfectElement.style.opacity = 1;
@@ -302,7 +323,6 @@ function thePlatformTheStickHits() {
     (platform) => platform.x < stickFarX && stickFarX < platform.x + platform.w
   );
 
-  // If the stick hits the perfect area. Beautiful.
   if (
     platformTheStickHits &&
     platformTheStickHits.x + platformTheStickHits.w / 2 - perfectAreaSize / 2 <
