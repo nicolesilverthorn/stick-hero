@@ -82,19 +82,19 @@ body {
 	#title {
 		font-size: 1.5em;
 		font-weight: 900;
-		top: 10px;
+		top: 8px;
 	}
 
 	#score {
-		top: 25px;
-		right: 10px;
+		top: 40px;
+		right: 12px;
 		font-size: 1em;
 		font-weight: 900;
 	}
 
 	#hiScore {
-		top: 50px;
-		right: 10px;
+		top: 60px;
+		right: 12px;
 		font-size: 1em;
 		font-weight: 900;
 	}
