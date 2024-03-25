@@ -80,31 +80,32 @@ body {
 	}
 	
 	#title {
-	  font-size: 1em;
-      font-weight: 900;
+		font-size: 1.5em;
+		font-weight: 900;
 	}
 
 	#score {
-	  top: 30px;
-	  right: 30px;
-	  font-size: 0.75em;
-	  font-weight: 900;
+		top: 30px;
+		right: 30px;
+		font-size: 1em;
+		font-weight: 900;
 	}
 
 	#hiScore {
-	  top: 60px;
-	  right: 10px;
-	  font-size: 0.75em;
-	  font-weight: 900;
+		top: 60px;
+		right: 10px;
+		font-size: 1em;
+		font-weight: 900;
 	}
 
 	#introduction {
-	  font-size: 1.15em;
-	  font-weight: 700;	  
+		width: 300px;
+		font-size: 1em;
+		font-weight: 700;	  
 	}
 
 	#restart {
-	  font-size: 0.25em;
-	  font-weight: 700;	  
+		font-size: 1em;
+		font-weight: 700;	  
 	}
 }
