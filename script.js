@@ -200,10 +200,6 @@ window.addEventListener("resize", function (event) {
 
 window.requestAnimationFrame(animate);
 
-
-
-
-
 // The main game loop
 function animate(timestamp) {
   if (!lastTimestamp) {
@@ -216,8 +212,7 @@ function animate(timestamp) {
 		hiScore = score;
 		localStorage.setItem("hiScore", score);
 	}
-    
-
+	
   switch (phase) {
     case "waiting":
       return; // Stop the loop
