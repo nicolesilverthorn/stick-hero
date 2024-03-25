@@ -162,14 +162,6 @@ function generatePlatform() {
 
 resetGame();
 
-// If space was pressed restart the game
-window.addEventListener("keydown", function (event) {
-  if (event.key == " ") {
-    event.preventDefault();
-    resetGame();
-    return;
-  }
-});
 
 window.addEventListener("mousedown", function (event) {
   if (phase == "waiting") {
@@ -185,6 +177,7 @@ window.addEventListener("touchstart", function (event) {
     introductionElement.style.opacity = 0;
     phase = "stretching";
     window.requestAnimationFrame(animate);
+	event.preventDefault();
   }
 });
 
@@ -305,6 +298,10 @@ function animate(timestamp) {
       if (heroY > maxHeroY) {
         restartButton.style.display = "block";
         return;
+		  if (score > hiScore) {
+			hiScore = score;
+			localStorage.setItem("hiScore", score);
+		  }
       }
       break;
     }
