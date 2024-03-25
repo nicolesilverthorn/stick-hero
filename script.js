@@ -75,6 +75,7 @@ else {
 
 // Resets game variables and layouts but does not start the game (game starts on keypress) Oh yeahh
 function resetGame() {
+//localStorage.clear();			//uncomment this, reload browser a few times (will say null) then recomment to clear high score////////////////////////////////////////////////////	
   // Reset game progress
   phase = "waiting";
   lastTimestamp = undefined;
@@ -218,6 +219,10 @@ function animate(timestamp) {
     return;
   }
   
+  if (score > hiScore) {
+		hiScore = score;
+		localStorage.setItem("hiScore", score);
+	}
     
 
   switch (phase) {
@@ -341,7 +346,7 @@ function draw() {
 
   drawBackground();
 
-  // Center main canvas area to the middle of the screen
+  // Centre main canvas area to the middle of the screen
   ctx.translate(
     (window.innerWidth - canvasWidth) / 2 - sceneOffset,
     (window.innerHeight - canvasHeight) / 2
